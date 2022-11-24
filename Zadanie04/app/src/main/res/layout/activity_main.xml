@@ -8,8 +8,8 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerView2"
-        android:name="com.example.zadanie04.ToDoListFragment"
+        android:name="com.example.zadanie04.TaskFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:layout="@layout/fragment_to_do_list" />
+        tools:layout="@layout/fragment_task_list" />
 </RelativeLayout>
