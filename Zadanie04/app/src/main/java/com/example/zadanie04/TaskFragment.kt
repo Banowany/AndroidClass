@@ -8,6 +8,10 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
+import com.example.zadanie04.databinding.FragmentTaskBinding
+import com.example.zadanie04.databinding.FragmentTaskListBinding
 import com.example.zadanie04.placeholder.PlaceholderTasks
 
 /**
@@ -38,7 +42,10 @@ class TaskFragment : Fragment() {
                     columnCount <= 1 -> LinearLayoutManager(context)
                     else -> GridLayoutManager(context, columnCount)
                 }
-                adapter = MyTaskRecyclerViewAdapter(PlaceholderTasks.TASKS)
+                val binding : FragmentTaskListBinding = FragmentTaskListBinding.inflate(inflater, container, false)
+                val adapter = MyTaskRecyclerViewAdapter(PlaceholderTasks.TASKS)
+                binding.list.adapter = adapter
+                //view.adapter = adapter
             }
         }
         return view

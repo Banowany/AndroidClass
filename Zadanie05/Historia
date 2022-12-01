@@ -1,0 +1,14 @@
+Historyjka:
+1. Gdy włączamy aplikacje wiswietla się nam lista produktów.
+2. Każdy wiersz zawiera nazwę produktu.
+3. Klikając na dany wiersz otwiera się strona z nazwą produktu oraz jej opisem
+
+Kroki:
+1. Tworzymy "data class" Product, która zawiera nazwę i listę produktów
+2. Tworzymy obiekt "Placeholder" zawierający przykładaową listę produktów
+3. Tworzymy layout wiersza dla produktu
+
+4. Tworzymy layout z listą produktów
+5. Tworzymy layout strony produktu (nazwa i opis)
+6. Tworzymy funkcję tworzącą intecje z przekazniem produktu jako argument do odpalania strony produktu
+7. Połączenie kliknięcia produktu na liście z funkcją odpalającą stronę produktu
