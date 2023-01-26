@@ -17,35 +17,36 @@ import android.widget.RemoteViews
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 
-class MainActivity : AppCompatActivity()
-{
+class MainActivity : AppCompatActivity() {
     lateinit var button: Button
 
     @SuppressLint("MissingInflatedId")
-    override fun onCreate(savedInstanceState: Bundle?)
-    {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        createNotificationChannel()
+        val service = ShopNotificationService(applicationContext)
+
         button = findViewById(R.id.button1)
 
-        button.setOnClickListener {
-            val notificationBuilder = NotificationCompat.Builder(this)
-                .setSmallIcon(androidx.core.R.drawable.notification_bg)
-                .setContentTitle("Nowe produkty w sklepie")
-                .setContentText("Odwiedz nasza apke i sprawdz")
-                .setPriority(NotificationCompat.PRIORITY_HIGH)
+        button.setOnClickListener{
+            service.showNotification()
+        }
+    }
+
+    private fun createNotificationChannel() {
+        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.O) {
+            val channel = NotificationChannel(
+                ShopNotificationService.PRODUCT_CHANNEL_ID,
+                "Products",
+                NotificationManager.IMPORTANCE_DEFAULT)
+
+            channel.description = "Notify about new products in shop"
 
             val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-            notificationManager.notify(0, notificationBuilder.build())
+
+            notificationManager.createNotificationChannel(channel)
         }
-//        notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-//        var builder = NotificationCompat.Builder(this)
-//            .setSmallIcon(R.drawable.ic )
-//            .setContentTitle("UWAGA!!! POJAWIL SIE NOWY PRODUKT")
-//            .setContentText("ZERKNIJ DO NASZEJ APKI I JE ZOBACZ")
-//            .setAutoCancel(true)
-//
-//        notificationManager.notify(0, builder.build())
     }
 }
